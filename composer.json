@@ -1,0 +1,23 @@
+{
+  "name": "packaged/console",
+  "description": "Process and Console Utilities",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Brooke Bryan",
+      "email": "brooke@bajb.net"
+    },
+    {
+      "name": "Richard Gooding",
+      "email": "richard.gooding@justdevelop.it"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Packaged\\Console\\": "src"
+    }
+  }
+}
