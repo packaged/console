@@ -35,7 +35,7 @@ class MultiExec
   public function clear()
   {
     $this->reset();
-    $this->_commands = array();
+    $this->_commands = [];
     return $this;
   }
 
@@ -46,7 +46,7 @@ class MultiExec
   public function reset()
   {
     $this->_complete = false;
-    $this->_output   = array();
+    $this->_output   = [];
     return $this;
   }
 
@@ -117,7 +117,7 @@ class MultiExec
 
   protected function _executeBatch($ids)
   {
-    $handles = array();
+    $handles = [];
     foreach($ids as $id)
     {
       $command            = $this->_commands[$id];
