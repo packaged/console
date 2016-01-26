@@ -14,11 +14,18 @@ class MultiExec
   protected $_output;
   protected $_complete;
   protected $_concurrency;
+  /** @var null|callable */
+  protected $_onOutput = null;
 
   public function __construct($concurrency = 10)
   {
     $this->clear();
     $this->_concurrency = (int)$concurrency;
+  }
+
+  public function setOnOutput(callable $onOutput)
+  {
+    $this->_onOutput = $onOutput;
   }
 
   /**
@@ -126,7 +133,13 @@ class MultiExec
       {
         if(!feof($ph))
         {
-          $this->_output[$id] .= fread($ph, 1024);
+          $line = fread($ph, 1024);
+          $this->_output[$id] .= $line;
+          if($this->_onOutput)
+          {
+            $cb = $this->_onOutput;
+            $cb($id, $line);
+          }
           $finished = false;
         }
       }
